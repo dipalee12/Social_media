@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Recommendations</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 20px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+      font-size: 24px;
+      letter-spacing: 1px;
+      animation: slideInDown 0.5s ease-in-out;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="submit"] {
+      padding: 12px;
+      margin-bottom: 20px;
+      border: none;
+      border-bottom: 2px solid #ff6f61;
+      width: 100%;
+      max-width: 300px;
+      outline: none;
+      background-color: transparent;
+      color: #333;
+      transition: border-bottom-color 0.3s ease-in-out;
+    }
+
+    input[type="text"]:focus {
+      border-bottom-color: #ff3e36;
+    }
+
+    input[type="radio"] {
+      margin-right: 5px;
+    }
+
+    input[type="submit"] {
+      background-color: #ff6f61;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #ff3e36;
+    }
+
+    .recommendations {
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #f2f2f2;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      animation: slideInUp 0.5s ease-in-out;
+    }
+
+    .recommendations h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .recommendation-item {
+      margin-bottom: 10px;
+    }
+
+    /* Animations */
+    @keyframes slideInDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideInUp {
+      from {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Welcome to the User Recommendations Website</h1>
+    <form id="recommendationForm">
+      <label for="user_name">Enter your user name:</label>
+      <input type="text" id="user_name" name="user_name" required>
+
+      <label>Filter options:</label>
+      <input type="radio" id="filter_likes" name="filter_option" value="likes" checked>
+      <label for="filter_likes">Filter already liked posts</label>
+
+      <input type="radio" id="filter_created" name="filter_option" value="created">
+      <label for="filter_created">Filter posts created by the user</label>
+
+      <input type="submit" value="Get Recommendations">
+    </form>
+
+    <div class="recommendations" id="recommendationsSection">
+      <!-- Recommendations will be displayed here -->
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('recommendationForm').addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent form submission
+
+      var formData = new FormData(this); // Get form data
+
+      fetch('/recommendations', {
+        method: 'POST',
+        body: formData
+      })
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('recommendationsSection').innerHTML = data; // Update recommendations section with response
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    });
+  </script>
+</body>
+
+</html>
