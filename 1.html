@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Honeycomb Stylem</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Bhuvan" />
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
+      body {
+        font-family: "Montserrat", sans-serif;
+        background: #fff;
+      }
+
+      *,
+      .honeycomb::before,
+      .honeycomb::after {
+        box-sizing: border-box;
+      }
+
+      /*Color*/
+      .orange {
+        background: #ffa500;
+      }
+      .pink {
+        background: #ed1556;
+      }
+      .royalblue {
+        background: #4169e1;
+      }
+      .darkgey {
+        background: #34568b;
+      }
+      .browny {
+        background: #960200;
+      }
+      .darksky {
+        background: #295e8d;
+      }
+      .greeny {
+        background: #547e24;
+      }
+      .purple {
+        background: #8d295e;
+      }
+      .Spooky {
+        background: #c67e3d;
+      }
+      .honeycomb {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        justify-content: center;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0;
+        transform: translateY(34.375px);
+      }
+      .honeycomb-cell {
+        flex: 0 1 200px;
+        max-width: 200px;
+        height: 80px;
+        margin: 37px 5px 10px;
+        position: relative;
+        padding: 0.5em;
+        text-align: center;
+        z-index: 1;
+      }
+      .honeycomb-cell__title {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto;
+        word-break: break-word;
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: 700;
+        font-size: 1.75em;
+        transition: opacity 350ms;
+      }
+      .honeycomb-cell__title > small {
+        font-weight: 300;
+        margin-top: 0.25em;
+      }
+      .honeycomb-cell__image {
+        -o-object-fit: cover;
+        object-fit: cover;
+        -o-object-position: center;
+        object-position: center;
+      }
+      .honeycomb-cell::before,
+      .honeycomb-cell::after {
+        content: "";
+      }
+      .honeycomb-cell::before,
+      .honeycomb-cell::after,
+      .honeycomb-cell__image {
+        top: -50%;
+        left: 0;
+        width: 100%;
+        height: 200%;
+        display: block;
+        position: absolute;
+        -webkit-clip-path: polygon(
+          50% 0%,
+          100% 25%,
+          100% 75%,
+          50% 100%,
+          0% 75%,
+          0% 25%
+        );
+        clip-path: polygon(
+          50% 0%,
+          100% 25%,
+          100% 75%,
+          50% 100%,
+          0% 75%,
+          0% 25%
+        );
+        z-index: -1;
+      }
+      .honeycomb-cell::before {
+        background: #fff;
+        transform: scale(1.055);
+      }
+      .honeycomb-cell::after {
+        background: #3ea0eb;
+        opacity: 0.5;
+        transition: opacity 350ms;
+      }
+      .honeycomb-cell:hover .honeycomb-cell__title {
+        opacity: 0;
+      }
+      .honeycomb-cell:hover::before {
+        background: #72f88e;
+      }
+      .honeycomb-cell:hover::after {
+        opacity: 0;
+      }
+      .honeycomb__placeholder {
+        display: none;
+        opacity: 0;
+        width: 250px;
+        margin: 0 12.5px;
+      }
+
+      @media (max-width: 550px) {
+        .honeycomb-cell {
+          margin: 81.25px 25px;
+        }
+      }
+      @media (min-width: 550px) and (max-width: 825px) {
+        .honeycomb-cell:nth-child(3n) {
+          margin-right: calc(50% - 125px);
+          margin-left: calc(50% - 125px);
+        }
+
+        .honeycomb__placeholder:nth-child(3n + 5) {
+          display: block;
+        }
+      }
+      @media (min-width: 825px) and (max-width: 1100px) {
+        .honeycomb-cell:nth-child(5n + 4) {
+          margin-left: calc(50% - 275px);
+        }
+
+        .honeycomb-cell:nth-child(5n + 5) {
+          margin-right: calc(50% - 275px);
+        }
+
+        .honeycomb__placeholder:nth-child(5n),
+        .honeycomb__placeholder:nth-child(5n + 3) {
+          display: block;
+        }
+      }
+      @media (min-width: 1100px) {
+        .honeycomb-cell:nth-child(7n + 5) {
+          margin-left: calc(50% - 400px);
+        }
+
+        .honeycomb-cell:nth-child(7n + 7),
+        .honeycomb-cell:nth-child(7n + 5):nth-last-child(2) {
+          margin-right: calc(50% - 400px);
+        }
+
+        .honeycomb__placeholder:nth-child(7n + 7),
+        .honeycomb__placeholder:nth-child(7n + 9),
+        .honeycomb__placeholder:nth-child(7n + 11) {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="honeycomb" lang="es">
+      <li class="honeycomb-cell">
+        <img
+          class="honeycomb-cell__image"
+          src="https://source.unsplash.com/random/1"
+        />
+        <div class="honeycomb-cell__title">One</div>
+      </li>
+      <li class="honeycomb-cell">
+        <img
+          class="honeycomb-cell__image"
+          src="https://source.unsplash.com/random/2"
+        />
+        <div class="honeycomb-cell__title">Two</div>
+      </li>
+      <li class="honeycomb-cell">
+        <img
+          class="honeycomb-cell__image"
+          src="https://source.unsplash.com/random/3"
+        />
+        <div class="honeycomb-cell__title">Three</div>
+      </li>
+      <li class="honeycomb-cell">
+        <img
+          class="honeycomb-cell__image"
+          src="https://source.unsplash.com/random/4"
+        />
+        <div class="honeycomb-cell__title">Four</div>
+      </li>
+      <li class="honeycomb-cell">
+        <img
+          class="honeycomb-cell__image"
+          src="https://source.unsplash.com/random/5"
+        />
+        <div class="honeycomb-cell__title">Five<small>Solgan</small></div>
+      </li>
+      <li class="honeycomb-cell">
+        <img
+          class="honeycomb-cell__image"
+          src="https://source.unsplash.com/random/6"
+        />
+        <div class="honeycomb-cell__title">Six<small>Number 6</small></div>
+      </li>
+      <li class="honeycomb-cell">
+        <img
+          class="honeycomb-cell__image"
+          src="https://source.unsplash.com/random/7"
+        />
+        <div class="honeycomb-cell__title">Seven</div>
+      </li>
+      <li class="honeycomb-cell">
+        <img
+          class="honeycomb-cell__image"
+          src="https://source.unsplash.com/random/7"
+        />
+        <div class="honeycomb-cell__title">Eight</div>
+      </li>
+      <li class="honeycomb-cell">
+        <img
+          class="honeycomb-cell__image"
+          src="https://source.unsplash.com/random/7"
+        />
+        <div class="honeycomb-cell__title">Nine</div>
+      </li>
+      <li class="honeycomb-cell">
+        <img
+          class="honeycomb-cell__image"
+          src="https://source.unsplash.com/random/7"
+        />
+        <div class="honeycomb-cell__title">Ten</div>
+      </li>
+      <li class="honeycomb-cell">
+        <img
+          class="honeycomb-cell__image"
+          src="https://source.unsplash.com/random/7"
+        />
+        <div class="honeycomb-cell__title">Numbers</div>
+      </li>
+      <li class="honeycomb-cell honeycomb__placeholder"></li>
+    </ul>
+  </body>
+</html>
