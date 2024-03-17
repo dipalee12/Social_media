@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recommendations</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      padding: 50px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="text-center mb-4">Top 10 Recommended Posts</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Post ID</th>
+          <th scope="col">Probability</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for index, row in recommendations.iterrows() %}
+        <tr>
+          <td>{{ row['post_id'] }}</td>
+          <td>{{ row['probability'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div
